@@ -3,7 +3,7 @@ from sqlalchemy import Boolean, Column, DateTime, Integer
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import declarative_base, declared_attr, sessionmaker
 
-from app.core.config import setting
+from app.core.config import settings
 
 
 class PreBase:
@@ -26,7 +26,7 @@ class PreBaseCharityDonation(Base):
     close_date = Column(DateTime)
 
 
-engine = create_async_engine(setting.database_url)
+engine = create_async_engine(settings.database_url)
 
 AsyncSessionLocal = sessionmaker(engine, class_=AsyncSession)
 
