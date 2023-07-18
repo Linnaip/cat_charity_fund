@@ -5,4 +5,4 @@ from app.core.db import PreBaseCharityDonation
 
 class CharityProject(PreBaseCharityDonation):
     name = Column(String(100), unique=True, nullable=False)
-    decription = Column(Text, nullable=False)
+    description = Column(Text, nullable=False)
