@@ -7,6 +7,7 @@ from app.core.config import settings
 from app.core.db import get_async_session
 from app.core.user import get_user_db, get_user_manager
 from app.schemas.user import UserCreate
+from app.services.logs import logger
 
 get_async_session_context = contextlib.asynccontextmanager(get_async_session)
 get_user_db_context = contextlib.asynccontextmanager(get_user_db)
@@ -27,8 +28,8 @@ async def create_user(
                             is_superuser=is_superuser,
                         )
                     )
-    except UserAlreadyExists:
-        pass
+    except UserAlreadyExists as exception:
+        logger.error(f"User already exists: {exception}")
 
 
 async def create_first_superuser():
